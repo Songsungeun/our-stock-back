@@ -1,0 +1,38 @@
+{
+  "name": "our-stock-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Songsungeun/our-stock-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Songsungeun/our-stock-back/issues"
+  },
+  "homepage": "https://github.com/Songsungeun/our-stock-back#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.3",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.16",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.3",
+    "@types/jest": "^25.1.3",
+    "@types/mongoose": "^5.7.3",
+    "jest": "^25.1.0",
+    "tslint": "^6.0.0",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.3"
+  }
+}
