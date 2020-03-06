@@ -3,8 +3,12 @@ import { crawl } from './crawl';
 import { extract } from './extract';
 import { urlPath } from './constant/urlPath';
 
-const app = express();
 
+const app = express();
+const cors = require('cors');
+const iconv = require('iconv-lite');
+
+app.use(cors())
 app.get('/getTotalIndex', async (req, res) => {
     // let url: string = req.params.url;
     const totalVal = { kospi: {}, kosdaq: {}, nasdaq: {} }
@@ -18,6 +22,6 @@ app.get('/getTotalIndex', async (req, res) => {
     res.json(totalVal);
 });
 
-app.listen(8080, () => {
+app.listen(3000, () => {
     console.log('server started');
 })

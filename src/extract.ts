@@ -12,7 +12,8 @@ export const extract = (html: string, type?: string) => {
 
 	val = $('#now_value'), rate = $('#change_value_and_rate');
 	data.val = val.text();
-	data.rate = rate.text();
+	data.rate = rate.text().split('%')[0]; // 쓰레기 값이 들어와서 %로 split
+
 	return data;
 
 }
