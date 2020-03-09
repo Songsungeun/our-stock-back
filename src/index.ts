@@ -12,12 +12,15 @@ app.use(cors())
 app.get('/getTotalIndex', async (req, res) => {
     // let url: string = req.params.url;
     const totalVal = { kospi: {}, kosdaq: {}, nasdaq: {} }
-    const kospi = await crawl(urlPath.kospi);
-    totalVal.kospi = extract(kospi);
-    const kosdaq = await crawl(urlPath.kosdaq);
-    totalVal.kosdaq = extract(kosdaq);
-    const nasdaq = await crawl(urlPath.nasdaq);
-    totalVal.nasdaq = extract(nasdaq, 'nasdaq');
+    const kospi = Buffer.from(await crawl(urlPath.kospi));
+
+    totalVal.kospi = extract(iconv.decode(kospi, 'EUC-KR').toString());
+
+    const kosdaq = Buffer.from(await crawl(urlPath.kosdaq));
+    totalVal.kosdaq = extract(iconv.decode(kosdaq, 'EUC-KR').toString());
+
+    const nasdaq = Buffer.from(await crawl(urlPath.nasdaq));
+    totalVal.nasdaq = extract(iconv.decode(nasdaq, 'EUC-KR').toString(), 'nasdaq');
 
     res.json(totalVal);
 });
