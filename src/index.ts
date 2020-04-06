@@ -11,7 +11,7 @@ const iconv = require('iconv-lite');
 app.use(cors())
 app.get('/getTotalIndex', async (req, res) => {
     // let url: string = req.params.url;
-    const totalVal = { kospi: {}, kosdaq: {}, nasdaq: {} }
+    const totalVal = { kospi: {}, kosdaq: {}, nasdaq: {}, exchange: {} }
     const kospi = Buffer.from(await crawl(urlPath.kospi));
 
     totalVal.kospi = extract(iconv.decode(kospi, 'EUC-KR').toString());
@@ -21,6 +21,9 @@ app.get('/getTotalIndex', async (req, res) => {
 
     const nasdaq = Buffer.from(await crawl(urlPath.nasdaq));
     totalVal.nasdaq = extract(iconv.decode(nasdaq, 'EUC-KR').toString(), 'nasdaq');
+
+    const exchange = Buffer.from(await crawl(urlPath.market));
+    totalVal.exchange = extract(iconv.decode(exchange, 'EUC-KR').toString(), 'exchange');
 
     res.json(totalVal);
 });

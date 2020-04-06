@@ -15,7 +15,16 @@ export const extract = (html: string, type?: string) => {
 		// nasdaq은 등락비율 제공을 안해줘서 별도로 등락비율 계산
 		data.rate = `${rateVal} ${upDown}${calcRate(data.val, rateVal, upDown).toFixed(2)}`;
 
-	} else {
+	}
+
+	if (type && type === 'exchange') {
+		data.val = $('#exchangeList .value').first().text();
+		let upDown = $('#exchangeList .head_info .blind').text();
+		data.rate = `${upDown.substring(1, 3) === '상승' ? '+' : '-'}${$('#exchangeList .change').first().text()}`;
+
+	}
+
+	if (!type) {
 		data.val = $('#now_value').text();
 		data.rate = $('#change_value_and_rate').text().split('%')[0];
 	}
